@@ -1,0 +1,3 @@
+from .VoiceTextChannel import VoiceTextChannel, VoiceTextChannelOutputPort
+from .BindTextChannelWithVoiceChannel import BindTextChannelWithVoiceChannel, BindTextChannelWithVoiceChannelOutputPort
+from .UnbindTextChannelWithVoiceChannel import UnbindTextChannelWithVoiceChannel, UnbindTextChannelWithVoiceChannelOutputPort

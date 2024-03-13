@@ -1,0 +1,16 @@
+**/__pycache__/
+
+token.txt
+secrets.json
+db.db
+.env
+<<<<<<< HEAD
+<<<<<<< HEAD
+.venv
+.vscode
+=======
+.venv
+>>>>>>> 1547efa (avoid uploading venv folder)
+=======
+.venv
+>>>>>>> 1547efa10bc844e67d157e290c4738f53b4be6db

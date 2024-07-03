@@ -68,8 +68,9 @@ class RemindCommands(commands.Cog, NotifyRemindOutputPort):
     @option(name='id', description='提醒編號', type=int, required=True)
     async def _remove_remind(self, interaction, id: int):
         user_id = interaction.user.id
+        server_id = interaction.guild_id
         try:
-            self.remove_remind.execute(id, user_id)
+            self.remove_remind.execute(str(id), str(server_id), str(user_id))
             await interaction.response.send_message(f'✅**已移除提醒**, 提醒編號: {id}', ephemeral=True)
         except ValueError as e:
             await interaction.response.send_message(f'❌**{e}**', ephemeral=True)
@@ -122,4 +123,5 @@ def setup(bot):
     notify_remind.output_port = cog
     bot.add_cog(cog)
     loop = asyncio.get_event_loop()
+    # wait until bot is ready
     loop.create_task(notify_remind.run())

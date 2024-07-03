@@ -3,7 +3,7 @@ from discord.enums import Status
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv(override=True)
 TOKEN = os.getenv('TOKEN')
 COGS_FILE_PATH = os.getenv('COGS_FILE_PATH')
 BOT_STATUS = Status.online

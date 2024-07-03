@@ -10,6 +10,11 @@ class GoogleNews:
         self.time: str = time
         self.media: str = media
 
+    def __eq__(self, other):
+        if not isinstance(other, GoogleNews):
+            return False
+        return self.title == other.title and self.link == other.link and self.time == other.time and self.media == other.media
+
 class GetNews:
     def __init__(self):
         pass
@@ -31,7 +36,10 @@ class GetNews:
                 if self._check_if_too_long(news):
                     i += 1
                     continue
-                news_list.append(GoogleNews(title[i].text, 'https://news.google.com/' + title[i]['href'], timeAgo[i].text, media[i].text))
+                
+                if title[i]['href'].startswith('.'):
+                    title[i]['href'] = title[i]['href'][1:]
+                news_list.append(GoogleNews(title[i].text, 'https://news.google.com' + title[i]['href'], timeAgo[i].text, media[i].text))
                 i += 1
             except IndexError:
                 break

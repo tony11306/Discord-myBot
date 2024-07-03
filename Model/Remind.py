@@ -8,3 +8,8 @@ class Remind:
         self.user_id = user_id
         self.server_id = server_id
         self.is_private = is_private
+
+    def __eq__(self, other):
+        if not isinstance(other, Remind):
+            return False
+        return self.id == other.id and self.title == other.title and self.time == other.time and self.user_id == other.user_id and self.server_id == other.server_id and self.is_private == other.is_private

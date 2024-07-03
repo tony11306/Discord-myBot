@@ -3,7 +3,10 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-from Model.Typhoon import Typhoon
+class Typhoon:
+    def __init__(self, name: str, type: str):
+        self.name: str = name
+        self.type: str = type
 
 class GetTyphoons:
     def __init__(self):

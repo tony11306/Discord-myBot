@@ -36,6 +36,11 @@ class VoiceChatRoomCommands(commands.Cog, VoiceTextChannelOutputPort, BindTextCh
     
     @commands.Cog.listener(name='on_voice_state_update')
     async def update_voice_state(self, member: Member, before: VoiceState, after: VoiceState):
+        
+        # if the member is itself
+        if member == self.bot.user:
+            return
+
         if after.channel == before.channel: # User mute or deafen
             return
         if after.channel is not None and before.channel is not None: # User switch voice channel
@@ -53,7 +58,7 @@ class VoiceChatRoomCommands(commands.Cog, VoiceTextChannelOutputPort, BindTextCh
     async def bind_text_and_voice_channel(self, interaction, text_channel: discord.TextChannel, voice_channel: discord.VoiceChannel):
         try:
             self.bind_text_channel_with_voice_channel.execute(str(text_channel.id), str(voice_channel.id))
-            await interaction.response.send_message(f'✅**已綁定文字頻道與語音頻道**', ephemeral=True)
+            await interaction.response.send_message(f'✅**已綁定文字頻道與語音頻道，請確保機器人可以存取該頻道，否則功能會異常**', ephemeral=True)
         except ValueError as e:
             await interaction.response.send_message(f'❌**{e}**', ephemeral=True)
 

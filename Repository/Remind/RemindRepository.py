@@ -34,6 +34,14 @@ class RemindRepository:
         conn.close()
         return [Remind(remind[0], remind[2], remind[1], remind[4], remind[5], remind[3]) for remind in reminds]
     
+    def get_reminds_by_server_id(self, server_id: str) -> List[Remind]:
+        conn = sqlite3.connect('db.db')
+        c = conn.cursor()
+        c.execute('SELECT * FROM Remind WHERE server_id = ?', (server_id,))
+        reminds = c.fetchall()
+        conn.close()
+        return [Remind(remind[0], remind[2], remind[1], remind[4], remind[5], remind[3]) for remind in reminds]
+    
     def get_expired_reminds(self) -> List[Remind]:
         conn = sqlite3.connect('db.db')
         c = conn.cursor()

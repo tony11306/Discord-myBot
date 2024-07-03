@@ -2,7 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 from typing import List
 
-from Model.Quake import Quake
+class Quake:
+    def __init__(self, location: str, magnitude: str, level: str, depth: str, time: str):
+        self.location: str = location
+        self.magnitude: str = magnitude
+        self.level: str = level
+        self.depth: str = depth
+        self.time: str = time
+
+    def __eq__(self, other):
+        if not isinstance(other, Quake):
+            return False
+        return self.location == other.location and self.magnitude == other.magnitude and self.level == other.level and self.depth == other.depth and self.time == other.time
 
 class GetRecentQuakes:
     def __init__(self):

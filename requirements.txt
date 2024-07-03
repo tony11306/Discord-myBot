@@ -6,3 +6,4 @@ requests
 yt_dlp
 flask
 python-dotenv
+freezegun

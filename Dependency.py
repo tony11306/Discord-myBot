@@ -8,7 +8,7 @@ remind_repository = RemindRepository()
 four_gamer_news_repository = FourGamerNewsRepository()
 music_repository = MusicRepository()
 
-from UseCases import FourGamer, Google, Remind, VoiceTextChannel, CentralWeatherAdministration, Music
+from UseCases import FourGamer, Google, Remind, VoiceTextChannel, CentralWeatherAdministration, Music, Ip
 
 
 get_news = FourGamer.GetNews()
@@ -36,3 +36,4 @@ clear_song_list = Music.ClearSongList(music_repository=music_repository)
 search_youtube_song = Music.SearchYoutubeSong()
 add_song = Music.AddSong(music_repository=music_repository)
 get_song_list = Music.GetSongList(music_repository=music_repository)
+get_public_ip = Ip.GetPublicIp()

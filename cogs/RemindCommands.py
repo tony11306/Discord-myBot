@@ -52,7 +52,7 @@ class RemindCommands(commands.Cog, NotifyRemindOutputPort):
     @option(name='minute', description='幾分鐘後', type=int, required=False, min_value=0)
     async def _remind_after(self, interaction, title: str, day: int = 0, hour: int = 0, minute: int = 0):
         if day == 0 and hour == 0 and minute == 0:
-            interaction.response.send_message('❌**請至少設定一個時間參數**', ephemeral=True)
+            await interaction.response.send_message('❌**請至少設定一個時間參數**', ephemeral=True)
             return
         user_id = interaction.user.id
         time = datetime.now() + timedelta(days=day, hours=hour, minutes=minute)
@@ -118,10 +118,11 @@ class RemindCommands(commands.Cog, NotifyRemindOutputPort):
         else:
             await interaction.response.send_message('❌**發生錯誤**', ephemeral=True)
 
+    @commands.Cog.listener()
+    async def on_ready(self):
+        await self.notify_remind.run()
+
 def setup(bot):
     cog = RemindCommands(bot, add_remind, get_remind_by_user_id, remove_remind, bind_remind_channel, unbind_remind_channel)
     notify_remind.output_port = cog
     bot.add_cog(cog)
-    loop = asyncio.get_event_loop()
-    # wait until bot is ready
-    loop.create_task(notify_remind.run())

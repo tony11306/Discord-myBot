@@ -18,7 +18,7 @@ def load_cog_files(bot: commands.Bot, current_file_path: str):
             bot.load_extension(file_abs_path[:-3].replace('/', '.'))
             print(file_abs_path[:-3].replace('/', '.'), 'loaded')
 
-
+ 
 if __name__ == '__main__':
     bot = commands.Bot(intents=Intents.default())
     load_cog_files(bot, COGS_FILE_PATH)
